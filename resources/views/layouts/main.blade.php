@@ -45,15 +45,12 @@
         <div class="adminx-sidebar expand-hover push">
             <ul class="sidebar-nav">
                 <li class="sidebar-nav-item">
-                    <a href="index.html" class="sidebar-nav-link active">
+                    <a href="/" class="sidebar-nav-link">
                         <span class="sidebar-nav-icon">
                             <i data-feather="home"></i>
                         </span>
                         <span class="sidebar-nav-name">
                             Dashboard
-                        </span>
-                        <span class="sidebar-nav-end">
-
                         </span>
                     </a>
                 </li>
@@ -137,16 +134,7 @@
             <div class="adminx-main-content">
                 <div class="container-fluid">
                     <!-- BreadCrumb -->
-                    <nav aria-label="breadcrumb" role="navigation">
-                        <ol class="breadcrumb adminx-page-breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                        </ol>
-                    </nav>
-
-                    <div class="pb-3">
-                        @yield('container')
-                    </div>
+                    @yield('container')
                 </div>
             </div>
         </div>
