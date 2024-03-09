@@ -19,7 +19,7 @@ class CreateAttendancesTable extends Migration
             $table->timestamp('start')->nullable();
             $table->timestamp('end')->nullable();
             $table->date('date');
-            $table->string('teaching-role');
+            $table->string('teaching_role');
             $table->integer('duration')->nullable();
             $table->timestamps();
             $table->foreign('id_user')->references('id')->on('users');

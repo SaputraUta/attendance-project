@@ -40,3 +40,15 @@ Route::get('/materials', function () {
 Route::get('/classes', function () {
     return view('classes');
 });
+
+Route::get('/adduser', function () {
+    return view('adduser');
+});
+
+Route::get('/addmaterials', function () {
+    return view('addmaterials');
+});
+
+Route::get('/addclasses', function () {
+    return view('addclasses');
+});
