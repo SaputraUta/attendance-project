@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Ramsey\Uuid\Uuid;
 
-class CreateUsersTable extends Migration
+class CreateCodesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('codes', function (Blueprint $table) {
             $table->id();
-            $table->uuid('id_asisten')->unique()->default(Uuid::uuid4());
-            $table->string('username')->unique();
-            $table->date('join_date');
-            $table->string('role');
-            $table->string('password');
+            $table->string('code', 6)->unique();
+            $table->foreignId('id_user');
+            $table->foreignId('id_user_get');
             $table->timestamps();
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user_get')->references('id')->on('users');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('codes');
     }
 }
