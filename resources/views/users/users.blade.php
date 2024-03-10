@@ -13,7 +13,12 @@
 
     </div>
 
-    <a href="/adduser" class="btn btn-primary btn-block mb-3">Add User</a>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    <a href="/users/create" class="btn btn-primary btn-block mb-3">Add User</a>
 
     <table class="table">
         <thead>

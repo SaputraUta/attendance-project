@@ -24,22 +24,11 @@
                 AdminX
             </a>
 
-            <ul class="navbar-nav d-flex justify-content-end mr-2">
-                <li class="nav-item dropdown">
-                    <a class="nav-link avatar-with-name" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                        href="#">
-                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg"
-                            class="d-inline-block align-top" alt="">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">My Profile</a>
-                        <a class="dropdown-item" href="#">My Tasks</a>
-                        <a class="dropdown-item" href="#">Settings</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="#">Sign out</a>
-                    </div>
-                </li>
-            </ul>
+            <form action="/logout" method="post">
+                @csrf
+                <button type="submit" class="btn btn-danger mr-5">Logout</button>
+            </form>
+            
         </nav>
 
         <!-- expand-hover push -->

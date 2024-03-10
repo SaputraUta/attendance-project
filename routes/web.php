@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,9 +43,7 @@ Route::get('/classes', function () {
     return view('classes');
 });
 
-Route::get('/adduser', function () {
-    return view('adduser');
-});
+Route::resource('users', UserController::class);
 
 Route::get('/addmaterials', function () {
     return view('addmaterials');
@@ -52,3 +52,9 @@ Route::get('/addmaterials', function () {
 Route::get('/addclasses', function () {
     return view('addclasses');
 });
+
+Route::get('/login', [LoginController::class, 'index']);
+
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::post('/logout', [LoginController::class, 'logout']);

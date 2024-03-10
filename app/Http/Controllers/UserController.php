@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -14,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('users.users');
     }
 
     /**
@@ -24,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.adduser');
     }
 
     /**
@@ -35,7 +37,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'username' => 'required|min:5|unique:users',
+            'role' => 'required',
+            'password' => 'required|min:8'
+        ]);
+
+        $validatedData['join_date'] = Carbon::now();
+        $validatedData['password'] = bcrypt($validatedData['password']);
+        $validatedData['id_asisten'] = Str::uuid();
+
+        User::create($validatedData);
+        return redirect('/users')->with('success', 'Users successfully added!');
     }
 
     /**
