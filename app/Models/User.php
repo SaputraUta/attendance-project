@@ -43,5 +43,9 @@ class User extends Authenticatable
     protected $casts = [
         'join_date' => 'datetime',
     ];
+
+    public function code(){
+        return $this->hasMany(Code::class);
+    }
     
 }

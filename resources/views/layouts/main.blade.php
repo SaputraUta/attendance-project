@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/adminx.css" media="screen" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons@4.29.0/dist/feather.min.css">
 
     <!--
       # Optional Resources
@@ -20,7 +21,7 @@
     <div class="adminx-container">
         <nav class="navbar navbar-expand justify-content-between fixed-top">
             <a class="navbar-brand mb-0 h1 d-none d-md-block" href="index.html">
-                <img src="./demo/img/logo.png" class="navbar-brand-image d-inline-block align-top mr-2" alt="">
+                <img src="assets/logo.png" class="navbar-brand-image d-inline-block align-top mr-2" alt="">
                 AdminX
             </a>
 
@@ -28,7 +29,7 @@
                 @csrf
                 <button type="submit" class="btn btn-danger mr-5">Logout</button>
             </form>
-            
+
         </nav>
 
         <!-- expand-hover push -->
@@ -47,7 +48,7 @@
                 </li>
 
                 <li class="sidebar-nav-item">
-                    <a href="generate-code" class="sidebar-nav-link">
+                    <a href="codes" class="sidebar-nav-link">
                         <span class="sidebar-nav-icon">
                             <i data-feather="layout"></i>
                         </span>
@@ -135,7 +136,10 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.0/dist/feather.min.js"></script>
+    <script>
+        feather.replace();
+    </script>
     <!-- If you prefer vanilla JS these are the only required scripts -->
     <!-- script src="./dist/js/vendor.js"></script>
     <script src="./dist/js/adminx.vanilla.js"></script-->

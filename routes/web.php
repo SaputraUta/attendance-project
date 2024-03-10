@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CodeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -15,13 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 
-Route::get('/generate-code', function () {
-    return view('generate-code');
-});
+Route::resource('codes', CodeController::class)->middleware('auth');
 
 Route::get('/attendance-report', function () {
     return view('attendance-report');
@@ -29,10 +27,6 @@ Route::get('/attendance-report', function () {
 
 Route::get('/self-attendance', function () {
     return view('self-attendance');
-});
-
-Route::get('/users', function () {
-    return view('users');
 });
 
 Route::get('/materials', function () {
@@ -43,7 +37,7 @@ Route::get('/classes', function () {
     return view('classes');
 });
 
-Route::resource('users', UserController::class);
+Route::resource('users', UserController::class)->middleware('auth');
 
 Route::get('/addmaterials', function () {
     return view('addmaterials');
@@ -53,8 +47,8 @@ Route::get('/addclasses', function () {
     return view('addclasses');
 });
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/login', [LoginController::class, 'authenticate'])->middleware('guest');
 
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');

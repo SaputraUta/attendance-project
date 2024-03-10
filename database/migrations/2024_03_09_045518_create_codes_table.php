@@ -17,7 +17,7 @@ class CreateCodesTable extends Migration
             $table->id();
             $table->string('code', 6)->unique();
             $table->foreignId('id_user');
-            $table->foreignId('id_user_get');
+            $table->foreignId('id_user_get')->nullable();
             $table->timestamps();
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_user_get')->references('id')->on('users');
