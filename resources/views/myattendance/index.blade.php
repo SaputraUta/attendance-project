@@ -12,7 +12,13 @@
         <h1>Attendance report</h1>
     </div>
 
-    <table class="table">
+    <div class="mb-3">
+        <button class="btn btn-primary" onclick="exportToExcel('attendanceTable', 'attendance_user_report')">Export to
+            Excel</button>
+    </div>
+
+
+    <table id="attendanceTable" class="table">
         <thead>
             <tr>
                 <th scope="col">Nama asisten</th>
@@ -42,4 +48,15 @@
             @endforeach
         </tbody>
     </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        function exportToExcel(tableId, filename) {
+            const table = document.getElementById(tableId);
+            const ws = XLSX.utils.table_to_sheet(table);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+            XLSX.writeFile(wb, `${filename}.xlsx`);
+        }
+    </script>
 @endsection
