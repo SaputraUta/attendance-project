@@ -105,7 +105,7 @@
                 </li>
 
                 <li class="sidebar-nav-item">
-                    <a class="sidebar-nav-link" href="classes">
+                    <a class="sidebar-nav-link" href="kelas">
                         <span class="sidebar-nav-icon">
                             <i data-feather="layers"></i>
                         </span>

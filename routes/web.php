@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +22,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
 
+Route::post('/', [DashboardController::class, 'store'])->middleware('auth');
+
+Route::put('/', [DashboardController::class, 'update'])->middleware('auth');
+
+Route::resource('attendances', AttendanceController::class)->middleware('auth');
+
 Route::resource('codes', CodeController::class)->middleware('auth');
 
 Route::get('/attendance-report', function () {
@@ -29,23 +38,11 @@ Route::get('/self-attendance', function () {
     return view('self-attendance');
 });
 
-Route::get('/materials', function () {
-    return view('materials');
-});
+Route::resource('materials', MaterialController::class)->middleware('auth');
 
-Route::get('/classes', function () {
-    return view('classes');
-});
+Route::resource('kelas', KelasController::class)->middleware('auth');
 
 Route::resource('users', UserController::class)->middleware('auth');
-
-Route::get('/addmaterials', function () {
-    return view('addmaterials');
-});
-
-Route::get('/addclasses', function () {
-    return view('addclasses');
-});
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 

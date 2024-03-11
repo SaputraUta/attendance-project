@@ -15,7 +15,7 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user');
+            $table->uuid('id_asisten');
             $table->foreignId('id_material');
             $table->foreignId('id_kelas');
             $table->timestamp('start')->nullable();
@@ -24,7 +24,7 @@ class CreateAttendancesTable extends Migration
             $table->string('teaching_role');
             $table->integer('duration')->nullable();
             $table->timestamps();
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_asisten')->references('id_asisten')->on('users');
             $table->foreign('id_material')->references('id')->on('materials');
             $table->foreign('id_kelas')->references('id')->on('kelas');
         });

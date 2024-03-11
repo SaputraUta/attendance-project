@@ -12,7 +12,13 @@
         <h1>Materials</h1>
     </div>
 
-    <a href="/addmaterials" class="btn btn-primary btn-block mb-3">Add Materials</a>
+    <a href="/materials/create" class="btn btn-primary btn-block mb-3">Add Materials</a>
+
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <table class="table">
         <thead>
@@ -21,15 +27,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>IPA</td>
-            </tr>
-            <tr>
-                <td>IPS</td>
-            </tr>
-            <tr>
-                <td>Bahasa Indonesia</td>
-            </tr>
+            @foreach ($materials as $material)
+                <tr>
+                    <td>{{ $material->materi }}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 @endsection

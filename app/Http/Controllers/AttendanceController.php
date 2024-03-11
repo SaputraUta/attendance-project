@@ -5,37 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 
+
 class AttendanceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'id_user' => 'required',
+            'id_kelas' => 'required',
+            'id_material' => 'required',
+            'teaching_role' => 'required',
+            'code' => 'required',
+        ]);
+
+        dd($validatedData);
     }
 
     /**

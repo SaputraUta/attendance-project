@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Material;
-use App\Http\Requests\StoreMaterialRequest;
-use App\Http\Requests\UpdateMaterialRequest;
+use Illuminate\Http\Request;
 
 class MaterialController extends Controller
 {
@@ -15,7 +14,10 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        //
+        $materials = Material::all();
+        return view('materials.index', [
+            'materials' => $materials
+        ]);
     }
 
     /**
@@ -25,7 +27,7 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        //
+        return view('materials.create');
     }
 
     /**
@@ -34,9 +36,14 @@ class MaterialController extends Controller
      * @param  \App\Http\Requests\StoreMaterialRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMaterialRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'materi' => 'required|min:4|unique:materials',
+        ]);
+
+        Material::create($validatedData);
+        return redirect('/materials')->with('success', 'Material successfully added.');
     }
 
     /**
@@ -68,7 +75,7 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMaterialRequest $request, Material $material)
+    public function update(Request $request, Material $material)
     {
         //
     }

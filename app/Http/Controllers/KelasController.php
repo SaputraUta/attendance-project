@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
-use App\Http\Requests\StoreKelasRequest;
-use App\Http\Requests\UpdateKelasRequest;
+use Illuminate\Http\Request;
 
 class KelasController extends Controller
 {
@@ -15,7 +14,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+        $kelas = Kelas::all();
+        return view('kelas.index', ['kelas' => $kelas]);
     }
 
     /**
@@ -25,7 +25,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        return view('kelas.create');
     }
 
     /**
@@ -34,9 +34,17 @@ class KelasController extends Controller
      * @param  \App\Http\Requests\StoreKelasRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreKelasRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_kelas' => 'required|min:4|unique:kelas',
+            'fakultas' => 'required|min:4',
+            'jurusan' => 'required|min:4',
+            'tingkat' => 'required',
+        ]);
+
+        Kelas::create($validatedData);
+        return redirect('/kelas')->with('success', 'Kelas successfully addes.');
     }
 
     /**
@@ -68,7 +76,7 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateKelasRequest $request, Kelas $kelas)
+    public function update(Request $request, Kelas $kelas)
     {
         //
     }

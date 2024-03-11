@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('kelas.layouts.main')
 
 @section('container')
     <nav aria-label="breadcrumb" role="navigation">
@@ -15,22 +15,35 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
-                <form action="" method="">
+                <form action="/kelas" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label for="nama_kelas" class="form-label">Nama kelas</label>
                         <input type="text" class="form-control" name="nama_kelas" id="nama_kelas" required>
+                        @error('nama_kelas')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="fakultas" class="form-label">Fakultas</label>
                         <input type="text" class="form-control" name="fakultas" id="fakultas" required>
+                        @error('fakultas')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="jurusan" class="form-label">Jurusan</label>
                         <input type="text" class="form-control" name="jurusan" id="jurusan" required>
+                        @error('jurusan')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="tingkat" class="form-label">Tingkat</label>
                         <input type="text" class="form-control" name="tingkat" id="tingkat" required>
+                        @error('tingkat')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
