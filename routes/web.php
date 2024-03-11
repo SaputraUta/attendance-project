@@ -26,21 +26,17 @@ Route::post('/', [DashboardController::class, 'store'])->middleware('auth');
 
 Route::put('/', [DashboardController::class, 'update'])->middleware('auth');
 
-Route::get('/attendancesreport', [DashboardController::class, 'attendances'])->middleware('auth');
+Route::get('/attendancesreport', [DashboardController::class, 'attendances'])->middleware('admin');
 
 Route::get('/myattendance', [DashboardController::class, 'attendancesByUser'])->middleware('auth');
 
-Route::resource('codes', CodeController::class)->middleware('auth');
+Route::resource('codes', CodeController::class)->middleware('isNotAssistant');
 
-Route::get('/self-attendance', function () {
-    return view('self-attendance');
-});
+Route::resource('materials', MaterialController::class)->middleware('admin');
 
-Route::resource('materials', MaterialController::class)->middleware('auth');
+Route::resource('kelas', KelasController::class)->middleware('admin');
 
-Route::resource('kelas', KelasController::class)->middleware('auth');
-
-Route::resource('users', UserController::class)->middleware('auth');
+Route::resource('users', UserController::class)->middleware('admin');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 

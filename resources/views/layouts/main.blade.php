@@ -47,27 +47,31 @@
                     </a>
                 </li>
 
-                <li class="sidebar-nav-item">
-                    <a href="codes" class="sidebar-nav-link">
-                        <span class="sidebar-nav-icon">
-                            <i data-feather="layout"></i>
-                        </span>
-                        <span class="sidebar-nav-name">
-                            Generate code
-                        </span>
-                    </a>
-                </li>
+                @can('isNotAssistant')
+                    <li class="sidebar-nav-item">
+                        <a href="codes" class="sidebar-nav-link">
+                            <span class="sidebar-nav-icon">
+                                <i data-feather="layout"></i>
+                            </span>
+                            <span class="sidebar-nav-name">
+                                Generate code
+                            </span>
+                        </a>
+                    </li>
+                @endcan
 
-                <li class="sidebar-nav-item">
-                    <a class="sidebar-nav-link" href="attendancesreport">
-                        <span class="sidebar-nav-icon">
-                            <i data-feather="pie-chart"></i>
-                        </span>
-                        <span class="sidebar-nav-name">
-                            Attendance report
-                        </span>
-                    </a>
-                </li>
+                @can('admin')
+                    <li class="sidebar-nav-item">
+                        <a class="sidebar-nav-link" href="attendancesreport">
+                            <span class="sidebar-nav-icon">
+                                <i data-feather="pie-chart"></i>
+                            </span>
+                            <span class="sidebar-nav-name">
+                                Attendance report
+                            </span>
+                        </a>
+                    </li>
+                @endcan
 
                 <li class="sidebar-nav-item">
                     <a class="sidebar-nav-link" href="myattendance">
@@ -80,38 +84,40 @@
                     </a>
                 </li>
 
-                <li class="sidebar-nav-item">
-                    <a class="sidebar-nav-link" href="users">
-                        <span class="sidebar-nav-icon">
-                            <i data-feather="edit"></i>
-                        </span>
-                        <span class="sidebar-nav-name">
-                            Users
-                        </span>
-                    </a>
-                </li>
+                @can('admin')
+                    <li class="sidebar-nav-item">
+                        <a class="sidebar-nav-link" href="users">
+                            <span class="sidebar-nav-icon">
+                                <i data-feather="edit"></i>
+                            </span>
+                            <span class="sidebar-nav-name">
+                                Users
+                            </span>
+                        </a>
+                    </li>
 
-                <li class="sidebar-nav-item">
-                    <a class="sidebar-nav-link" href="materials">
-                        <span class="sidebar-nav-icon">
-                            <i data-feather="grid"></i>
-                        </span>
-                        <span class="sidebar-nav-name">
-                            Materials
-                        </span>
-                    </a>
-                </li>
+                    <li class="sidebar-nav-item">
+                        <a class="sidebar-nav-link" href="materials">
+                            <span class="sidebar-nav-icon">
+                                <i data-feather="grid"></i>
+                            </span>
+                            <span class="sidebar-nav-name">
+                                Materials
+                            </span>
+                        </a>
+                    </li>
 
-                <li class="sidebar-nav-item">
-                    <a class="sidebar-nav-link" href="kelas">
-                        <span class="sidebar-nav-icon">
-                            <i data-feather="layers"></i>
-                        </span>
-                        <span class="sidebar-nav-name">
-                            Classes
-                        </span>
-                    </a>
-                </li>
+                    <li class="sidebar-nav-item">
+                        <a class="sidebar-nav-link" href="kelas">
+                            <span class="sidebar-nav-icon">
+                                <i data-feather="layers"></i>
+                            </span>
+                            <span class="sidebar-nav-name">
+                                Classes
+                            </span>
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </div><!-- Sidebar End -->
 
