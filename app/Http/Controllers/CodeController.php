@@ -16,7 +16,8 @@ class CodeController extends Controller
      */
     public function index()
     {
-        $codes = Code::all();
+        $user = Auth::user();
+        $codes = Code::where('id_user', $user->id)->get();
         return view('code.index', ['codes' => $codes]);
     }
 
