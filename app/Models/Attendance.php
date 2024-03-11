@@ -13,6 +13,7 @@ class Attendance extends Model
         'id_asisten',
         'id_material',
         'id_kelas',
+        'id_code',
         'start',
         'end',
         'date',
@@ -22,14 +23,18 @@ class Attendance extends Model
 
     public function material()
     {
-        return $this->belongsTo(Material::class);
+        return $this->belongsTo(Material::class, 'id_material');
     }
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(Kelas::class, 'id_kelas');
     }
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_asisten', 'id_asisten');
+    }
+    public function code()
+    {
+        return $this->hasOne(Code::class, 'id', 'id_code');
     }
 }

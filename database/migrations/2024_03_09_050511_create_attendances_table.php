@@ -18,6 +18,7 @@ class CreateAttendancesTable extends Migration
             $table->uuid('id_asisten');
             $table->foreignId('id_material');
             $table->foreignId('id_kelas');
+            $table->foreignId('id_code');
             $table->timestamp('start')->nullable();
             $table->timestamp('end')->nullable();
             $table->date('date');
@@ -27,6 +28,7 @@ class CreateAttendancesTable extends Migration
             $table->foreign('id_asisten')->references('id_asisten')->on('users');
             $table->foreign('id_material')->references('id')->on('materials');
             $table->foreign('id_kelas')->references('id')->on('kelas');
+            $table->foreign('id_code')->references('id')->on('codes');
         });
     }
 

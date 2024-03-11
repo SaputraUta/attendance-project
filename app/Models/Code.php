@@ -19,4 +19,14 @@ class Code extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function codeUsedBy()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+
+    public function attendance()
+    {
+        return $this->belongsTo(Attendance::class);
+    }
 }

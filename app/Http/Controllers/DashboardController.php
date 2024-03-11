@@ -42,12 +42,23 @@ class DashboardController extends Controller
             }]
         ]);
 
-        $validatedData['id_asisten'] = $user->id_asisten;
-        $validatedData['start'] = Carbon::now();
-        $validatedData['date'] = Carbon::today();
+        $code = Code::where('code', $validatedData['code'])->first();
 
-        Attendance::create($validatedData);
-        return redirect('/')->with('success', 'Checkin success');
+        if ($code) {
+            $code->update([
+                'id_user_get' => $user->id,
+            ]);
+
+            $validatedData['id_code'] = $code->id;
+            $validatedData['id_asisten'] = $user->id_asisten;
+            $validatedData['start'] = Carbon::now();
+            $validatedData['date'] = Carbon::today();
+
+            Attendance::create($validatedData);
+            return redirect('/')->with('success', 'Checkin success');
+        } else {
+            return redirect('/')->with('error', 'Code not valid');
+        }
     }
 
     public function update(Request $request)
@@ -61,5 +72,13 @@ class DashboardController extends Controller
         ]);
 
         return redirect('/')->with('success', 'Check-out successfull');
+    }
+
+    public function attendances()
+    {
+        $attendances = Attendance::all();
+        return view('attendance.index', [
+            'attendances' => $attendances,
+        ]);
     }
 }

@@ -59,7 +59,7 @@
                 </li>
 
                 <li class="sidebar-nav-item">
-                    <a class="sidebar-nav-link" href="attendance-report">
+                    <a class="sidebar-nav-link" href="attendancesreport">
                         <span class="sidebar-nav-icon">
                             <i data-feather="pie-chart"></i>
                         </span>

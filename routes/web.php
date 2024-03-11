@@ -26,13 +26,9 @@ Route::post('/', [DashboardController::class, 'store'])->middleware('auth');
 
 Route::put('/', [DashboardController::class, 'update'])->middleware('auth');
 
-Route::resource('attendances', AttendanceController::class)->middleware('auth');
+Route::get('/attendancesreport', [DashboardController::class, 'attendances'])->middleware('auth');
 
 Route::resource('codes', CodeController::class)->middleware('auth');
-
-Route::get('/attendance-report', function () {
-    return view('attendance-report');
-});
 
 Route::get('/self-attendance', function () {
     return view('self-attendance');

@@ -26,7 +26,7 @@
                         <form method="POST" action="/login">
                             @csrf
                             <div class="mb-3">
-                                <label for="username" class="form-label">Email address</label>
+                                <label for="username" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="username" name="username"
                                     aria-describedby="emailHelp">
                                 @error('email')
