@@ -44,8 +44,13 @@ class User extends Authenticatable
         'join_date' => 'datetime',
     ];
 
-    public function code(){
+    public function code()
+    {
         return $this->hasMany(Code::class);
     }
-    
+
+    public function attendance()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }
