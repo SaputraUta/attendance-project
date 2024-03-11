@@ -28,6 +28,8 @@ Route::put('/', [DashboardController::class, 'update'])->middleware('auth');
 
 Route::get('/attendancesreport', [DashboardController::class, 'attendances'])->middleware('auth');
 
+Route::get('/myattendance', [DashboardController::class, 'attendancesByUser'])->middleware('auth');
+
 Route::resource('codes', CodeController::class)->middleware('auth');
 
 Route::get('/self-attendance', function () {

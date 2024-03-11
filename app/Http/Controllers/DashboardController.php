@@ -81,4 +81,13 @@ class DashboardController extends Controller
             'attendances' => $attendances,
         ]);
     }
+
+    public function attendancesByUser()
+    {
+        $user = Auth::user();
+        $attendances = Attendance::where('id_asisten', $user->id_asisten)->get();
+        return view('myattendance.index', [
+            'attendances' => $attendances,
+        ]);
+    }
 }

@@ -70,14 +70,12 @@
                 </li>
 
                 <li class="sidebar-nav-item">
-                    <a class="sidebar-nav-link" href="self-attendance
-                    
-                    ">
+                    <a class="sidebar-nav-link" href="myattendance">
                         <span class="sidebar-nav-icon">
                             <i data-feather="align-justify"></i>
                         </span>
                         <span class="sidebar-nav-name">
-                            Self attendance
+                            My attendance
                         </span>
                     </a>
                 </li>
