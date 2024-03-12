@@ -14,11 +14,20 @@
     </div>
 
     @if (session('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success" role="alert">
             {{ session('success') }}
         </div>
     @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <a href="/users/create" class="btn btn-primary btn-block mb-3">Add User</a>
+
+
 
     <table class="table">
         <thead>
@@ -26,6 +35,7 @@
                 <th scope="col">Username</th>
                 <th scope="col">Join date</th>
                 <th scope="col">Role</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +44,14 @@
                     <td>{{ $user->username }}</td>
                     <td>{{ $user->join_date->toDateString() }}</td>
                     <td>{{ $user->role }}</td>
+                    <td>
+                        <form action="/users/{{ $user->id }}" method="POST">
+                            @method('delete')
+                            @csrf
+                            <a href="/users/{{ $user->id }}/edit" class="btn btn-secondary">Edit</a>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

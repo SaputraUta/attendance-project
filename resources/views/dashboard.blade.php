@@ -86,5 +86,28 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h3 class="card-title mb-4 font-weight-bold text-primary">Welcome back {{ $user->username }}</h3>
+                    <div class="display-6 text-center mb-3 font-weight-bold text-danger" id="realtimeClock"></div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function updateRealtimeClock() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            var formattedTime =
+                `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            document.getElementById('realtimeClock').innerText = formattedTime;
+        }
+        setInterval(updateRealtimeClock, 1000);
+        window.onload = updateRealtimeClock;
+    </script>
 @endsection

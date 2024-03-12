@@ -20,6 +20,12 @@
         </div>
     @endif
 
+    @if (session('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <table class="table">
         <thead>
             <tr>
@@ -41,6 +47,7 @@
                         <form action="/kelas/{{ $kelas->id }}" method="POST">
                             @method('delete')
                             @csrf
+                            <a href="/kelas/{{ $kelas->id }}/edit" type="submit" class="btn btn-secondary">Edit</a>
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>

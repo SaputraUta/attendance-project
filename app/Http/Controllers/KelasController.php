@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 
@@ -64,9 +65,12 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kelas $kelas)
+    public function edit($id)
     {
-        //
+        $kelas = Kelas::findOrfail($id);
+        return view('kelas.edit', [
+            'kelas' => $kelas,
+        ]);
     }
 
     /**
@@ -76,9 +80,24 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, $id)
     {
-        //
+        $kelas = Kelas::find($id);
+        $rules = [
+            'nama_kelas' => 'required|min:4',
+            'fakultas' => 'required|min:4',
+            'jurusan' => 'required|min:4',
+            'tingkat' => 'required',
+        ];
+
+        if ($request->nama_kelas != $kelas->nama_kelas) {
+            $rules['nama_kelas'] .= '|unique:kelas';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        Kelas::where('id', $id)->update($validatedData);
+        return redirect('kelas')->with('success', 'Class has been updated');
     }
 
     /**
@@ -87,12 +106,14 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kelas $kelas)
+    public function destroy($id)
     {
-        // $check = Kelas::destroy($kelas->id);
-        if (!(Kelas::destroy($kelas->id))) {
-            // dd();
-        }
+        $isAlreadyUsed = Attendance::where('id_kelas', $id)->exists();
+
+        if ($isAlreadyUsed) {
+            return redirect('kelas')->with('error', "You cannot delete this class because it is already used");
+        };
+        Kelas::destroy($id);
         return redirect('kelas')->with('success', 'Class has been deleted');
     }
 }

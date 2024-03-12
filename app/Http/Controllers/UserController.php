@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Attendance;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -76,7 +77,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -88,7 +91,22 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $rules = [
+            'role' => 'required',
+            'password' => 'required|min:8'
+        ];
+
+        if ($request->username != $user->username) {
+            $rules['username'] = 'required|min:5|unique:users';
+        } else {
+            $rules['username'] = 'required|min:5';
+        }
+
+        $validatedData = $request->validate($rules);
+        $validatedData['password'] = bcrypt($validatedData['password']);
+
+        User::where('id', $user->id)->update($validatedData);
+        return redirect('/users')->with('success', 'Users successfully edited!');
     }
 
     /**
@@ -99,6 +117,12 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $isAlreadyUsed = Attendance::where('id_asisten', $user->id_asisten)->exists();
+
+        if ($isAlreadyUsed) {
+            return redirect('users')->with('error', "You cannot delete this user because it is already used");
+        };
+        User::destroy($user->id);
+        return redirect('users')->with('success', 'User has been deleted');
     }
 }

@@ -34,7 +34,17 @@ Route::resource('codes', CodeController::class)->middleware('isNotAssistant');
 
 Route::resource('materials', MaterialController::class)->middleware('admin');
 
-Route::resource('kelas', KelasController::class)->middleware('admin');
+Route::get('kelas', [KelasController::class, 'index'])->middleware('admin');
+
+Route::get('kelas/{id}', [KelasController::class, 'destroy'])->middleware('admin');
+
+Route::get('kelas/create', [KelasController::class, 'create'])->middleware('admin');
+
+Route::post('kelas/create', [KelasController::class, 'store'])->middleware('admin');
+
+Route::get('kelas/{id}/edit', [KelasController::class, 'edit'])->middleware('admin');
+
+Route::put('kelas/{id}/edit', [KelasController::class, 'update'])->middleware('admin');
 
 Route::resource('users', UserController::class)->middleware('admin');
 

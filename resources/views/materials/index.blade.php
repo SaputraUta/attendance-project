@@ -19,7 +19,7 @@
             {{ session('success') }}
         </div>
     @endif
-    
+
     @if (session('error'))
         <div class="alert alert-danger" role="alert">
             {{ session('error') }}
@@ -38,7 +38,7 @@
                 <tr>
                     <td>{{ $material->materi }}</td>
                     <td>
-                        <form action="/materials/{{$material->id}}" method="POST">
+                        <form action="/materials/{{ $material->id }}" method="POST">
                             @method('delete')
                             @csrf
                             <a href="/materials/{{ $material->id }}/edit" class="btn btn-secondary">Edit</a>
