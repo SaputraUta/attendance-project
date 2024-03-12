@@ -15,7 +15,7 @@ class KelasController extends Controller
     public function index()
     {
         $kelas = Kelas::all();
-        return view('kelas.index', ['kelas' => $kelas]);
+        return view('kelas.index', ['kelass' => $kelas]);
     }
 
     /**
@@ -89,6 +89,10 @@ class KelasController extends Controller
      */
     public function destroy(Kelas $kelas)
     {
-        //
+        // $check = Kelas::destroy($kelas->id);
+        if (!(Kelas::destroy($kelas->id))) {
+            // dd();
+        }
+        return redirect('kelas')->with('success', 'Class has been deleted');
     }
 }

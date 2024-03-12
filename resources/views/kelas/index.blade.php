@@ -27,15 +27,23 @@
                 <th scope="col">Fakultas</th>
                 <th scope="col">Jurusan</th>
                 <th scope="col">Tingkat</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($kelas as $item)
+            @foreach ($kelass as $kelas)
                 <tr>
-                    <td>{{ $item->nama_kelas }}</td>
-                    <td>{{ $item->fakultas }}</td>
-                    <td>{{ $item->jurusan }}</td>
-                    <td>{{ $item->tingkat }}</td>
+                    <td>{{ $kelas->nama_kelas }}</td>
+                    <td>{{ $kelas->fakultas }}</td>
+                    <td>{{ $kelas->jurusan }}</td>
+                    <td>{{ $kelas->tingkat }}</td>
+                    <td>
+                        <form action="/kelas/{{ $kelas->id }}" method="POST">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

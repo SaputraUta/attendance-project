@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
 use App\Models\Material;
 use Illuminate\Http\Request;
 
@@ -65,7 +66,9 @@ class MaterialController extends Controller
      */
     public function edit(Material $material)
     {
-        //
+        return view('materials.edit', [
+            'material' => $material
+        ]);
     }
 
     /**
@@ -77,7 +80,12 @@ class MaterialController extends Controller
      */
     public function update(Request $request, Material $material)
     {
-        //
+        $validatedData = $request->validate([
+            'materi' => 'required|min:4|unique:materials',
+        ]);
+
+        Material::where('id', $material->id)->update($validatedData);
+        return redirect('/materials')->with('success', 'Material has been updated');
     }
 
     /**
@@ -88,6 +96,12 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
-        //
+        $isAlreadyUsed = Attendance::where('id_material', $material->id)->exists();
+
+        if ($isAlreadyUsed) {
+            return redirect('materials')->with('error', "You cannot delete this material because it is already used");
+        };
+        Material::destroy($material->id);
+        return redirect('materials')->with('success', 'Material has been deleted');
     }
 }

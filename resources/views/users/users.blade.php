@@ -29,21 +29,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Mark</td>
-                <td>27-10-23</td>
-                <td>Asssistant</td>
-            </tr>
-            <tr>
-                <td>Jacob</td>
-                <td>08-12-21</td>
-                <td>PJ</td>
-            </tr>
-            <tr>
-                <td>Saputra</td>
-                <td>09-03-02</td>
-                <td>Staff</td>
-            </tr>
+            @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->username }}</td>
+                    <td>{{ $user->join_date->toDateString() }}</td>
+                    <td>{{ $user->role }}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 @endsection

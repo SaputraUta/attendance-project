@@ -16,7 +16,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.users');
+        $users = User::all();
+        return view(
+            'users.users',
+            [
+                'users' => $users,
+            ]
+        );
     }
 
     /**
