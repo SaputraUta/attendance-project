@@ -45,6 +45,11 @@ class DashboardController extends Controller
         $code = Code::where('code', $validatedData['code'])->first();
 
         if ($code) {
+
+            if ($code->id_user_get) {
+                return redirect('/')->with('error', 'Code has already been used.');
+            }
+
             $code->update([
                 'id_user_get' => $user->id,
             ]);
